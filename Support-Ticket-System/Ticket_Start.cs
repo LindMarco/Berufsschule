@@ -34,10 +34,5 @@ namespace Support_Ticket_System
             form4.Show();
             this.Hide();
         }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
     }
 }

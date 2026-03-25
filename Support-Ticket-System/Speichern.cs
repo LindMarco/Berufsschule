@@ -8,8 +8,9 @@ namespace Support_Ticket_System
 {
     internal class Speichern
     {
-        private string dateipfad_speichern = @"C:\Users\de007467\OneDrive - FÖRCH\Desktop\Schule\2. Lehrjahr\BTS\Projekt (Support-Ticket-System)\Dateien\Tickets.txt";
-
+        private string dateipfad_speichern = "..\\..\\..\\Dateien\\Tickets.txt";
+        private string dateipfad_geschlossen = "..\\..\\..\\Dateien\\Geschlossene Tickets.txt";
+        private string dateipfad_offen = "..\\..\\..\\Dateien\\Offene Tickets.txt";
         public string dateipfad()
         {
             return dateipfad_speichern;
@@ -17,6 +18,25 @@ namespace Support_Ticket_System
         public void ticketspeichern(Tickets ticket)
         {
             File.AppendAllText(dateipfad_speichern, ticket.ToString() + System.Environment.NewLine);
+        }
+
+        public string geschlossen_pfad()
+        {
+            return dateipfad_geschlossen;
+        }
+
+        public void ticketschließen(Tickets ticket)
+        {
+            File.AppendAllText(dateipfad_geschlossen, ticket.ToString() + System.Environment.NewLine);
+        }
+
+        public string offene_pfad()
+        {
+            return dateipfad_offen;
+        }
+        public void ticketoffen(Tickets ticket)
+        {
+            File.AppendAllText(dateipfad_offen, ticket.ToString() + System.Environment.NewLine);
         }
     }
 }

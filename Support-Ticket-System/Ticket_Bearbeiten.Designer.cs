@@ -52,7 +52,7 @@
             // 
             bu_zurück.BackColor = SystemColors.ActiveCaption;
             bu_zurück.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_zurück.Location = new Point(41, 374);
+            bu_zurück.Location = new Point(12, 456);
             bu_zurück.Name = "bu_zurück";
             bu_zurück.Size = new Size(97, 43);
             bu_zurück.TabIndex = 0;
@@ -79,7 +79,6 @@
             tb_ticketnummer.Name = "tb_ticketnummer";
             tb_ticketnummer.Size = new Size(170, 29);
             tb_ticketnummer.TabIndex = 2;
-            tb_ticketnummer.TextChanged += tb_ticketnummer_TextChanged;
             // 
             // bu_suchen
             // 
@@ -107,9 +106,10 @@
             pa_bearbeiten.Controls.Add(tb_zusammenfassung);
             pa_bearbeiten.Controls.Add(tb_benutzer);
             pa_bearbeiten.Controls.Add(bu_zurück2);
-            pa_bearbeiten.Location = new Point(2, 0);
+            pa_bearbeiten.Dock = DockStyle.Fill;
+            pa_bearbeiten.Location = new Point(0, 0);
             pa_bearbeiten.Name = "pa_bearbeiten";
-            pa_bearbeiten.Size = new Size(796, 452);
+            pa_bearbeiten.Size = new Size(884, 511);
             pa_bearbeiten.TabIndex = 4;
             pa_bearbeiten.Visible = false;
             // 
@@ -117,7 +117,7 @@
             // 
             bu_fertigstellen.BackColor = SystemColors.ActiveCaption;
             bu_fertigstellen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_fertigstellen.Location = new Point(650, 371);
+            bu_fertigstellen.Location = new Point(750, 460);
             bu_fertigstellen.Name = "bu_fertigstellen";
             bu_fertigstellen.Size = new Size(122, 39);
             bu_fertigstellen.TabIndex = 23;
@@ -130,7 +130,7 @@
             la_beschreibung.AutoSize = true;
             la_beschreibung.BackColor = SystemColors.ActiveCaption;
             la_beschreibung.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            la_beschreibung.Location = new Point(35, 128);
+            la_beschreibung.Location = new Point(35, 143);
             la_beschreibung.Name = "la_beschreibung";
             la_beschreibung.Size = new Size(110, 21);
             la_beschreibung.TabIndex = 22;
@@ -141,7 +141,7 @@
             la_kategorie.AutoSize = true;
             la_kategorie.BackColor = SystemColors.ActiveCaption;
             la_kategorie.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            la_kategorie.Location = new Point(601, 42);
+            la_kategorie.Location = new Point(630, 42);
             la_kategorie.Name = "la_kategorie";
             la_kategorie.Size = new Size(82, 21);
             la_kategorie.TabIndex = 21;
@@ -184,18 +184,17 @@
             // 
             tb_beschreibung.BackColor = SystemColors.ActiveCaption;
             tb_beschreibung.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tb_beschreibung.Location = new Point(35, 152);
+            tb_beschreibung.Location = new Point(35, 167);
             tb_beschreibung.Multiline = true;
             tb_beschreibung.Name = "tb_beschreibung";
-            tb_beschreibung.Size = new Size(737, 183);
+            tb_beschreibung.Size = new Size(751, 215);
             tb_beschreibung.TabIndex = 17;
-            tb_beschreibung.TextChanged += tb_beschreibung_TextChanged;
             // 
             // tb_kategorie
             // 
             tb_kategorie.BackColor = SystemColors.ActiveCaption;
             tb_kategorie.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tb_kategorie.Location = new Point(601, 66);
+            tb_kategorie.Location = new Point(630, 66);
             tb_kategorie.Name = "tb_kategorie";
             tb_kategorie.Size = new Size(111, 29);
             tb_kategorie.TabIndex = 16;
@@ -206,7 +205,7 @@
             tb_verantwortliche_rolle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tb_verantwortliche_rolle.Location = new Point(410, 66);
             tb_verantwortliche_rolle.Name = "tb_verantwortliche_rolle";
-            tb_verantwortliche_rolle.Size = new Size(173, 29);
+            tb_verantwortliche_rolle.Size = new Size(182, 29);
             tb_verantwortliche_rolle.TabIndex = 15;
             // 
             // tb_zusammenfassung
@@ -231,7 +230,7 @@
             // 
             bu_zurück2.BackColor = SystemColors.ActiveCaption;
             bu_zurück2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_zurück2.Location = new Point(35, 371);
+            bu_zurück2.Location = new Point(3, 460);
             bu_zurück2.Name = "bu_zurück2";
             bu_zurück2.Size = new Size(122, 39);
             bu_zurück2.TabIndex = 12;

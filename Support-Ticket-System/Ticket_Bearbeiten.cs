@@ -27,12 +27,6 @@ namespace Support_Ticket_System
             form1.Show();
             this.Hide();
         }
-
-        private void tb_ticketnummer_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void bu_suchen_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tb_ticketnummer.Text))
@@ -53,7 +47,7 @@ namespace Support_Ticket_System
             tb_benutzer.Text = ticket.Benutzer;
             tb_zusammenfassung.Text = ticket.Zusammenfassung;
             tb_verantwortliche_rolle.Text = ticket.Verantwortliche_abteilung;
-            tb_kategorie.Text = ticket.Kategori;
+            tb_kategorie.Text = ticket.Kategorie;
             tb_beschreibung.Text = ticket.Beschreibung;
 
             pa_bearbeiten.Visible = true;
@@ -76,7 +70,7 @@ namespace Support_Ticket_System
             string zusammenfassung = tb_zusammenfassung.Text;
             string verantwortliche_rolle = tb_verantwortliche_rolle.Text;
             string kategorie = tb_kategorie.Text;
-            string beschreibung = tb_beschreibung.Text;
+            string beschreibung = tb_beschreibung.Text.Replace(Environment.NewLine, " ");
 
             Tickets neuesticket = new Tickets
             {
@@ -84,12 +78,14 @@ namespace Support_Ticket_System
                 Benutzer = benutzer,
                 Zusammenfassung = zusammenfassung,
                 Verantwortliche_abteilung = verantwortliche_rolle,
-                Kategori = kategorie,
+                Kategorie = kategorie,
                 Beschreibung = beschreibung
             };
 
-            Speichern speicher = new Speichern();
-            speicher.ticketspeichern(neuesticket);
+
+            Tickets bearbeiten = new Tickets();
+            bearbeiten.ticketbearbeiten(neuesticket);
+            bearbeiten.ticketbearbeitenalle(neuesticket);
 
             tb_benutzer.Text = "";
             tb_zusammenfassung.Text = "";
@@ -103,18 +99,12 @@ namespace Support_Ticket_System
 
             MessageBox.Show($"Ticket wurde bearbeitet, wenn Sie es bearbeiten möchten geben Sie die ID in das Feld Ticket bearbeiten ein. ID: {neuesticket.ID}", "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
-            //muss hier noch so sein, dass nicht ein Neues Ticket erstellt wird sondern in der Datei geändert wird
         }
 
         private void bu_zurück2_Click(object sender, EventArgs e)
         {
             pa_bearbeiten.Visible = false;
             tb_ticketnummer.Text = "";
-        }
-
-        private void tb_beschreibung_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

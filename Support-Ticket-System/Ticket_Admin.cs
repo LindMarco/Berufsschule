@@ -31,7 +31,7 @@ namespace Support_Ticket_System
 
             Speichern ticket = new Speichern();
 
-            string[] zeilen = File.ReadAllLines(ticket.dateipfad());
+            string[] zeilen = File.ReadAllLines(ticket.offene_pfad());
             foreach (string zeile in zeilen)
             {
                 string[] teile = zeile.Split(';');
@@ -51,15 +51,7 @@ namespace Support_Ticket_System
         {
             Application.Exit();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Ticket_Start form1 = new Ticket_Start();
-            form1.Show();
-            this.Hide();
-        }
-
-        private void bu_eingabe_Click(object sender, EventArgs e)
+        private void bu_PW_Click(object sender, EventArgs e)
         {
             string pw = "1";
             if (string.IsNullOrWhiteSpace(tb_passwort.Text))
@@ -79,27 +71,26 @@ namespace Support_Ticket_System
             }
         }
 
-        private void tb_passwort_TextChanged(object sender, EventArgs e)
+        private void bu_zurück_eingabe_Click(object sender, EventArgs e)
         {
-
+            pa_bearbeiten.Visible = false;
+            tb_ticket_wählen.Text = "";
         }
 
-        private void la_passwort_abdecken_Click(object sender, EventArgs e)
+        private void bu_zurück_PW_Click(object sender, EventArgs e)
         {
-
+            pa_übersicht.Visible = false;
+            tb_passwort.Text = "";
         }
 
-        private void lv_tickets_SelectedIndexChanged(object sender, EventArgs e)
+        private void bu_zurück_start_Click(object sender, EventArgs e)
         {
-
+            Ticket_Start form1 = new Ticket_Start();
+            form1.Show();
+            this.Hide();
         }
 
-        private void tb_ticket_wählen_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bu_ticket_wählen_Click(object sender, EventArgs e)
+        private void bu_ticket_nehmen_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tb_ticket_wählen.Text))
             {
@@ -131,31 +122,56 @@ namespace Support_Ticket_System
             ListViewItem item = new ListViewItem(ticket.Benutzer);
             item.SubItems.Add(ticket.Zusammenfassung);
             item.SubItems.Add(ticket.Verantwortliche_abteilung);
-            item.SubItems.Add(ticket.Kategori);
+            item.SubItems.Add(ticket.Kategorie);
             item.SubItems.Add(ticket.Beschreibung);
             lv_ticket.Items.Add(item);
         }
 
-        private void bu_zurück2_Click(object sender, EventArgs e)
+        private void bu_fertig_Click(object sender, EventArgs e)
         {
-            pa_übersicht.Visible = false;
-            tb_passwort.Text = "";
-        }
+            if (string.IsNullOrWhiteSpace(tb_kommentar.Text))
+            {
+                MessageBox.Show("Bitte alle Felder ausfüllen!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int gesuchteID = Convert.ToInt32(tb_ticket_wählen.Text);
+            string kommentar = tb_kommentar.Text;
 
-        private void bu_zurück3_Click(object sender, EventArgs e)
-        {
+            Tickets ticket = new Tickets().ticket_laden(gesuchteID);
+
+            ticket.Kommentar = kommentar;
+
+
+            Speichern speicher = new Speichern();
+            speicher.ticketschließen(ticket);
+
+            ticket.ticket_löschen(gesuchteID);
+
             pa_bearbeiten.Visible = false;
             tb_ticket_wählen.Text = "";
-        }
+            tb_kommentar.Text = "";
+            lv_tickets.Items.Clear();
 
-        private void bu_fertigstellen_Click(object sender, EventArgs e)
-        {
+            Speichern ticket1 = new Speichern();
 
-        }
+            string[] zeilen = File.ReadAllLines(ticket1.offene_pfad());
+            foreach (string zeile in zeilen)
+            {
+                string[] teile = zeile.Split(';');
+                if (teile.Length >= 6)
+                {
+                    ListViewItem item = new ListViewItem(teile[0]);
+                    item.SubItems.Add(teile[1]);
+                    item.SubItems.Add(teile[2]);
+                    item.SubItems.Add(teile[3]);
+                    item.SubItems.Add(teile[4]);
+                    item.SubItems.Add(teile[5]);
+                    lv_tickets.Items.Add(item);
+                }
+            }
 
-        private void Ticket_Admin_Load(object sender, EventArgs e)
-        {
-
+            MessageBox.Show($"Ticket mit der ID: {gesuchteID} wurde Erfolgreich Geschlossen", "Geschlossen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
         }
     }
 }

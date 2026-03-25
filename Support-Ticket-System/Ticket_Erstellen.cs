@@ -40,13 +40,13 @@ namespace Support_Ticket_System
                 MessageBox.Show("Bitte alle Felder ausfüllen!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            int id = 1; //muss noch angepasst werden, dass es automatisch was vergibt
+            Tickets ticket = new Tickets();
+            int id = ticket.ticket_id();
             string benutzer = tb_benutzer.Text;
             string zusammenfassung = tb_zusammenfassung.Text;
             string verantwortliche_rolle = tb_verantwortliche_abteilung.Text;
             string kategorie = tb_kategorie.Text;
-            string beschreibung = tb_beschreibung.Text;
+            string beschreibung = tb_beschreibung.Text.Replace(Environment.NewLine, " ");
 
             Tickets neuesticket = new Tickets
             {
@@ -54,12 +54,13 @@ namespace Support_Ticket_System
                 Benutzer = benutzer,
                 Zusammenfassung = zusammenfassung,
                 Verantwortliche_abteilung = verantwortliche_rolle,
-                Kategori = kategorie,
+                Kategorie = kategorie,
                 Beschreibung = beschreibung
             };
 
             Speichern speicher = new Speichern();
             speicher.ticketspeichern(neuesticket);
+            speicher.ticketoffen(neuesticket);
 
             tb_benutzer.Text = "";
             tb_zusammenfassung.Text = "";
@@ -73,11 +74,6 @@ namespace Support_Ticket_System
 
             MessageBox.Show($"Ticket wurde erstellt, wenn Sie es bearbeiten möchten geben Sie die ID in das Feld Ticket bearbeiten ein. ID: {neuesticket.ID}", "Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
-        }
-
-        private void la_kategorie_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

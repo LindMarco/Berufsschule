@@ -28,35 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            bu_zurück = new Button();
+            bu_zurück_start = new Button();
             la_Passwort = new Label();
             tb_passwort = new TextBox();
-            bu_eingabe = new Button();
             pa_übersicht = new Panel();
             pa_bearbeiten = new Panel();
+            label1 = new Label();
+            tb_kommentar = new TextBox();
             lv_ticket = new ListView();
-            bu_fertigstellen = new Button();
-            bu_zurück3 = new Button();
-            bu_zurück2 = new Button();
+            bu_fertig = new Button();
+            bu_zurück_eingabe = new Button();
+            bu_zurück_PW = new Button();
             tb_ticket_wählen = new TextBox();
             la_ticket_wählen = new Label();
-            bu_ticket_wählen = new Button();
+            bu_ticket_nehmen = new Button();
             lv_tickets = new ListView();
+            bu_PW = new Button();
             pa_übersicht.SuspendLayout();
             pa_bearbeiten.SuspendLayout();
             SuspendLayout();
             // 
-            // bu_zurück
+            // bu_zurück_start
             // 
-            bu_zurück.BackColor = SystemColors.ActiveCaption;
-            bu_zurück.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_zurück.Location = new Point(17, 598);
-            bu_zurück.Name = "bu_zurück";
-            bu_zurück.Size = new Size(97, 43);
-            bu_zurück.TabIndex = 0;
-            bu_zurück.Text = "Zurück";
-            bu_zurück.UseVisualStyleBackColor = false;
-            bu_zurück.Click += button1_Click;
+            bu_zurück_start.BackColor = SystemColors.ActiveCaption;
+            bu_zurück_start.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bu_zurück_start.Location = new Point(17, 598);
+            bu_zurück_start.Name = "bu_zurück_start";
+            bu_zurück_start.Size = new Size(97, 43);
+            bu_zurück_start.TabIndex = 0;
+            bu_zurück_start.Text = "Zurück";
+            bu_zurück_start.UseVisualStyleBackColor = false;
+            bu_zurück_start.Click += bu_zurück_start_Click;
             // 
             // la_Passwort
             // 
@@ -78,46 +80,57 @@
             tb_passwort.Name = "tb_passwort";
             tb_passwort.Size = new Size(121, 23);
             tb_passwort.TabIndex = 2;
-            tb_passwort.TextChanged += tb_passwort_TextChanged;
-            // 
-            // bu_eingabe
-            // 
-            bu_eingabe.BackColor = SystemColors.ActiveCaption;
-            bu_eingabe.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_eingabe.Location = new Point(533, 228);
-            bu_eingabe.Margin = new Padding(3, 2, 3, 2);
-            bu_eingabe.Name = "bu_eingabe";
-            bu_eingabe.Size = new Size(89, 31);
-            bu_eingabe.TabIndex = 3;
-            bu_eingabe.Text = "Eingabe";
-            bu_eingabe.UseVisualStyleBackColor = false;
-            bu_eingabe.Click += bu_eingabe_Click;
             // 
             // pa_übersicht
             // 
             pa_übersicht.Controls.Add(pa_bearbeiten);
-            pa_übersicht.Controls.Add(bu_zurück2);
+            pa_übersicht.Controls.Add(bu_zurück_PW);
             pa_übersicht.Controls.Add(tb_ticket_wählen);
             pa_übersicht.Controls.Add(la_ticket_wählen);
-            pa_übersicht.Controls.Add(bu_ticket_wählen);
+            pa_übersicht.Controls.Add(bu_ticket_nehmen);
             pa_übersicht.Controls.Add(lv_tickets);
-            pa_übersicht.Location = new Point(1, 0);
+            pa_übersicht.Dock = DockStyle.Fill;
+            pa_übersicht.Location = new Point(0, 0);
             pa_übersicht.Margin = new Padding(3, 2, 3, 2);
             pa_übersicht.Name = "pa_übersicht";
-            pa_übersicht.Size = new Size(1186, 662);
+            pa_übersicht.Size = new Size(1184, 661);
             pa_übersicht.TabIndex = 4;
             pa_übersicht.Visible = false;
             // 
             // pa_bearbeiten
             // 
+            pa_bearbeiten.Controls.Add(label1);
+            pa_bearbeiten.Controls.Add(tb_kommentar);
             pa_bearbeiten.Controls.Add(lv_ticket);
-            pa_bearbeiten.Controls.Add(bu_fertigstellen);
-            pa_bearbeiten.Controls.Add(bu_zurück3);
+            pa_bearbeiten.Controls.Add(bu_fertig);
+            pa_bearbeiten.Controls.Add(bu_zurück_eingabe);
+            pa_bearbeiten.Dock = DockStyle.Fill;
             pa_bearbeiten.Location = new Point(0, 0);
             pa_bearbeiten.Name = "pa_bearbeiten";
-            pa_bearbeiten.Size = new Size(1180, 662);
+            pa_bearbeiten.Size = new Size(1184, 661);
             pa_bearbeiten.TabIndex = 14;
             pa_bearbeiten.Visible = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.ActiveCaption;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(26, 192);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 21);
+            label1.TabIndex = 26;
+            label1.Text = "Kommentar";
+            // 
+            // tb_kommentar
+            // 
+            tb_kommentar.BackColor = SystemColors.ActiveCaption;
+            tb_kommentar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tb_kommentar.Location = new Point(26, 216);
+            tb_kommentar.Multiline = true;
+            tb_kommentar.Name = "tb_kommentar";
+            tb_kommentar.Size = new Size(537, 176);
+            tb_kommentar.TabIndex = 25;
             // 
             // lv_ticket
             // 
@@ -125,55 +138,54 @@
             lv_ticket.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lv_ticket.Location = new Point(0, 3);
             lv_ticket.Name = "lv_ticket";
-            lv_ticket.Size = new Size(1177, 73);
+            lv_ticket.Size = new Size(1177, 86);
             lv_ticket.TabIndex = 24;
             lv_ticket.UseCompatibleStateImageBehavior = false;
             // 
-            // bu_fertigstellen
+            // bu_fertig
             // 
-            bu_fertigstellen.BackColor = SystemColors.ActiveCaption;
-            bu_fertigstellen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_fertigstellen.Location = new Point(1047, 611);
-            bu_fertigstellen.Name = "bu_fertigstellen";
-            bu_fertigstellen.Size = new Size(122, 39);
-            bu_fertigstellen.TabIndex = 23;
-            bu_fertigstellen.Text = "Fertigstellen";
-            bu_fertigstellen.UseVisualStyleBackColor = false;
-            bu_fertigstellen.Click += bu_fertigstellen_Click;
+            bu_fertig.BackColor = SystemColors.ActiveCaption;
+            bu_fertig.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bu_fertig.Location = new Point(1047, 611);
+            bu_fertig.Name = "bu_fertig";
+            bu_fertig.Size = new Size(122, 39);
+            bu_fertig.TabIndex = 23;
+            bu_fertig.Text = "Fertigstellen";
+            bu_fertig.UseVisualStyleBackColor = false;
+            bu_fertig.Click += bu_fertig_Click;
             // 
-            // bu_zurück3
+            // bu_zurück_eingabe
             // 
-            bu_zurück3.BackColor = SystemColors.ActiveCaption;
-            bu_zurück3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_zurück3.Location = new Point(9, 608);
-            bu_zurück3.Name = "bu_zurück3";
-            bu_zurück3.Size = new Size(122, 39);
-            bu_zurück3.TabIndex = 12;
-            bu_zurück3.Text = "Zurück";
-            bu_zurück3.UseVisualStyleBackColor = false;
-            bu_zurück3.Click += bu_zurück3_Click;
+            bu_zurück_eingabe.BackColor = SystemColors.ActiveCaption;
+            bu_zurück_eingabe.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bu_zurück_eingabe.Location = new Point(11, 614);
+            bu_zurück_eingabe.Name = "bu_zurück_eingabe";
+            bu_zurück_eingabe.Size = new Size(122, 39);
+            bu_zurück_eingabe.TabIndex = 12;
+            bu_zurück_eingabe.Text = "Zurück";
+            bu_zurück_eingabe.UseVisualStyleBackColor = false;
+            bu_zurück_eingabe.Click += bu_zurück_eingabe_Click;
             // 
-            // bu_zurück2
+            // bu_zurück_PW
             // 
-            bu_zurück2.BackColor = SystemColors.ActiveCaption;
-            bu_zurück2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_zurück2.Location = new Point(12, 614);
-            bu_zurück2.Name = "bu_zurück2";
-            bu_zurück2.Size = new Size(122, 39);
-            bu_zurück2.TabIndex = 13;
-            bu_zurück2.Text = "Zurück";
-            bu_zurück2.UseVisualStyleBackColor = false;
-            bu_zurück2.Click += bu_zurück2_Click;
+            bu_zurück_PW.BackColor = SystemColors.ActiveCaption;
+            bu_zurück_PW.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bu_zurück_PW.Location = new Point(12, 614);
+            bu_zurück_PW.Name = "bu_zurück_PW";
+            bu_zurück_PW.Size = new Size(122, 39);
+            bu_zurück_PW.TabIndex = 13;
+            bu_zurück_PW.Text = "Zurück";
+            bu_zurück_PW.UseVisualStyleBackColor = false;
+            bu_zurück_PW.Click += bu_zurück_PW_Click;
             // 
             // tb_ticket_wählen
             // 
             tb_ticket_wählen.BackColor = SystemColors.ActiveCaption;
             tb_ticket_wählen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tb_ticket_wählen.Location = new Point(620, 20);
+            tb_ticket_wählen.Location = new Point(536, 25);
             tb_ticket_wählen.Name = "tb_ticket_wählen";
             tb_ticket_wählen.Size = new Size(100, 29);
             tb_ticket_wählen.TabIndex = 4;
-            tb_ticket_wählen.TextChanged += tb_ticket_wählen_TextChanged;
             // 
             // la_ticket_wählen
             // 
@@ -185,17 +197,17 @@
             la_ticket_wählen.TabIndex = 3;
             la_ticket_wählen.Text = "Ticket ID eingeben um das Ticket zu bearbeiten";
             // 
-            // bu_ticket_wählen
+            // bu_ticket_nehmen
             // 
-            bu_ticket_wählen.BackColor = SystemColors.ActiveCaption;
-            bu_ticket_wählen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bu_ticket_wählen.Location = new Point(767, 13);
-            bu_ticket_wählen.Name = "bu_ticket_wählen";
-            bu_ticket_wählen.Size = new Size(93, 41);
-            bu_ticket_wählen.TabIndex = 2;
-            bu_ticket_wählen.Text = "Eingabe";
-            bu_ticket_wählen.UseVisualStyleBackColor = false;
-            bu_ticket_wählen.Click += bu_ticket_wählen_Click;
+            bu_ticket_nehmen.BackColor = SystemColors.ActiveCaption;
+            bu_ticket_nehmen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bu_ticket_nehmen.Location = new Point(656, 18);
+            bu_ticket_nehmen.Name = "bu_ticket_nehmen";
+            bu_ticket_nehmen.Size = new Size(93, 41);
+            bu_ticket_nehmen.TabIndex = 2;
+            bu_ticket_nehmen.Text = "Eingabe";
+            bu_ticket_nehmen.UseVisualStyleBackColor = false;
+            bu_ticket_nehmen.Click += bu_ticket_nehmen_Click;
             // 
             // lv_tickets
             // 
@@ -206,7 +218,16 @@
             lv_tickets.Size = new Size(1168, 528);
             lv_tickets.TabIndex = 1;
             lv_tickets.UseCompatibleStateImageBehavior = false;
-            lv_tickets.SelectedIndexChanged += lv_tickets_SelectedIndexChanged;
+            // 
+            // bu_PW
+            // 
+            bu_PW.Location = new Point(536, 211);
+            bu_PW.Name = "bu_PW";
+            bu_PW.Size = new Size(92, 30);
+            bu_PW.TabIndex = 5;
+            bu_PW.Text = "Eingabe";
+            bu_PW.UseVisualStyleBackColor = true;
+            bu_PW.Click += bu_PW_Click;
             // 
             // Ticket_Admin
             // 
@@ -214,37 +235,38 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 661);
             Controls.Add(pa_übersicht);
-            Controls.Add(bu_eingabe);
+            Controls.Add(bu_PW);
             Controls.Add(tb_passwort);
             Controls.Add(la_Passwort);
-            Controls.Add(bu_zurück);
+            Controls.Add(bu_zurück_start);
             Name = "Ticket_Admin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Administrator";
-            FormClosing += admin_FormClosing;
-            Load += Ticket_Admin_Load;
             pa_übersicht.ResumeLayout(false);
             pa_übersicht.PerformLayout();
             pa_bearbeiten.ResumeLayout(false);
+            pa_bearbeiten.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button bu_zurück;
+        private Button bu_zurück_start;
         private Label la_Passwort;
         private TextBox tb_passwort;
-        private Button bu_eingabe;
         private Panel pa_übersicht;
         private ListView lv_tickets;
         private TextBox tb_ticket_wählen;
         private Label la_ticket_wählen;
-        private Button bu_ticket_wählen;
-        private Button bu_zurück2;
+        private Button bu_ticket_nehmen;
+        private Button bu_zurück_PW;
         private Panel pa_bearbeiten;
-        private Button bu_fertigstellen;
-        private Button bu_zurück3;
+        private Button bu_fertig;
+        private Button bu_zurück_eingabe;
         private ListView lv_ticket;
+        private TextBox tb_kommentar;
+        private Label label1;
+        private Button bu_PW;
     }
 }
